@@ -67,7 +67,6 @@ def get_enemy_coords():
         enemy_lst.append(enemy)
 
 
-
 def draw_enemies():
     global score,health
     for i in enemy_lst:
