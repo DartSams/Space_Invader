@@ -6,7 +6,7 @@ import time
 pygame.init()
 pygame.font.init()
 
-score=100
+score=0
 width,height=900,500
 root=pygame.display.set_mode((width,height))
 run=True
@@ -17,6 +17,7 @@ all_bullets=[]
 score_text=pygame.font.SysFont('comicsans',40)
 player_start_x,player_start_y=width/2-ship_width,450
 enemy_lst=[]
+enemy_speed=1
 
 player1=pygame.image.load(r"PyGame 3\pics\spaceship_red.png")
 player1=pygame.transform.scale(player1,(ship_width,ship_height))
@@ -57,7 +58,7 @@ def bullet_movement():
 #             all_bullets.remove(bullet)
 
 def get_enemy_coords(red):
-    if red.y>=player_start_y:
+    # if red.y>=player_start_y:
         # enemy_x=random.randint(0,width)
         # enemy_y=0
         # enemy=pygame.Rect(enemy_x,enemy_y,ship_width,ship_height)
@@ -65,8 +66,11 @@ def get_enemy_coords(red):
         # # if len(enemy_lst)<10:
         # #     enemy_lst.append(enemy)
         # root.blit(enemy_pic,(enemy.x,enemy.y))
-        enemy=pygame.Rect(random.randint(0,width),0,ship_width,ship_height)
-        enemy_lst.append(enemy)
+        enemy=pygame.Rect(random.randint(0,width),random.randint(-100,0),ship_width,ship_height)
+        if len(enemy_lst)<=9:
+            enemy_lst.append(enemy)
+
+
 
 
 def draw_enemies(red):
@@ -74,12 +78,17 @@ def draw_enemies(red):
     
     for i in enemy_lst:
         # pygame.draw.rect(bg,(255,255,255),i)
-        i[1]+=VEL
+        i[1]+=enemy_speed
         root.blit(enemy_pic,(i[0],i[1]))
         for bullet in all_bullets:
             if i.colliderect(bullet):
-                score-=10
+                score+=10
                 enemy_lst.remove(i)
+                all_bullets.remove(bullet)
+        
+        if i[1]>=height:
+            enemy_lst.remove(i)
+            score-=10
     
 
 def main():
