@@ -19,14 +19,14 @@ player_start_x,player_start_y=width/2-ship_width,450
 enemy_lst=[]
 enemy_speed=1
 
-player1=pygame.image.load(r"PyGame 3\pics\spaceship_red.png")
+player1=pygame.image.load(r"GitHub\Space_Invader\pics\spaceship_red.png")
 player1=pygame.transform.scale(player1,(ship_width,ship_height))
 
-enemy_pic=pygame.image.load(r"PyGame 3\pics\spaceship_yellow.png")
+enemy_pic=pygame.image.load(r"GitHub\Space_Invader\pics\spaceship_yellow.png")
 enemy_pic=pygame.transform.scale(enemy_pic,(ship_width,ship_height))
 enemy_pic=pygame.transform.rotate(enemy_pic,180)
 
-bg=pygame.transform.scale(pygame.image.load(r"PyGame 3\pics\space.png"),(width,height))
+bg=pygame.transform.scale(pygame.image.load(r"GitHub\Space_Invader\pics\space.png"),(width,height))
 
 
 class Level:
